@@ -1,4 +1,4 @@
-import heapq import heapify, heappush, heappop
+from heapq import heapify, heappush, heappop
 
 
 class MedianFinder(object):
