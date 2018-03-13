@@ -1,4 +1,4 @@
-from heapq import heapify, heappush, heappop
+from heapq import heapify, heappush, heappop, heappushpop
 
 
 class MedianFinder(object):
@@ -7,22 +7,18 @@ class MedianFinder(object):
         """
         initialize your data structure here.
         """
-        self.max = heapify([])
-        self.min = heapify([])
+        self.max = []
+        self.min = []
 
     def addNum(self, num):
         """
         :type num: int
         :rtype: void
         """
-        heappush(self.max, num)
-
-        self.min.heappush(self.max[0])
-        self.max.heappop()
+        heappush(self.min, -heappushpop(self.max, num))
 
         if len(self.max) < len(self.min):
-            self.max.heappush(self.min[-1])
-            self.min.heappop()
+            heappush(self.max, -heappop(self.min))
         return
 
     def findMedian(self):
@@ -30,5 +26,5 @@ class MedianFinder(object):
         :rtype: float
         """
         median = self.max[0] if len(self.max) > len(self.min) else \
-                 (self.max[0] + self.min[-1]) * 0.5
+                 (self.max[0] - self.min[0]) * 0.5
         return median
