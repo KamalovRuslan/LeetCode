@@ -21,7 +21,7 @@ class MedianFinder(object):
         self.max.heappop()
 
         if len(self.max) < len(self.min):
-            self.max.heappop(self.min[0])
+            self.max.heappush(self.min[0])
             self.min.heappop()
         return
 
