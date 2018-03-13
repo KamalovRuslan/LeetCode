@@ -21,7 +21,7 @@ class MedianFinder(object):
         self.max.heappop()
 
         if len(self.max) < len(self.min):
-            self.max.heappush(self.min[0])
+            self.max.heappush(self.min[-1])
             self.min.heappop()
         return
 
@@ -30,5 +30,5 @@ class MedianFinder(object):
         :rtype: float
         """
         median = self.max[0] if len(self.max) > len(self.min) else \
-                 (self.max[0] + self.min[0]) * 0.5
+                 (self.max[0] + self.min[-1]) * 0.5
         return median
